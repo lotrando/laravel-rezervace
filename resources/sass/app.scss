@@ -1,0 +1,39 @@
+@import "~bootstrap/scss/bootstrap";
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@400;700&display=swap');
+
+$navbar: #3a3c42;
+$background: #f7f8f9;
+$text: #3a3c42;
+
+body
+{
+	font-family: 'Roboto Condensed', sans-serif;
+	background-color: $background;
+	color: $text;
+}
+h1{
+	margin-bottom: 20px
+}
+
+.navbar
+{
+	background-color: $navbar;
+	box-shadow: 0 5px 5px 0 rgb( 207, 207, 207, 0.5);
+	margin-bottom: 20px;
+
+	a
+	{
+		color: #dddddd;
+	}
+}
+
+.card
+{
+	box-shadow: 0 5px 5px 0 rgb( 207, 207, 207, 0.5);
+	margin-bottom: 10px;
+}
+
+button[disabled] 
+{
+  cursor: not-allowed;
+}

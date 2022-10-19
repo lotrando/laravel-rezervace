@@ -1,0 +1,921 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- CSRF Token -->
+    <meta name="csrf-token" content="Tptnu6GClOLb3E5YwPmLctS7Nem7NRsBSMsMWC8b">
+
+    <title>
+        Auth::user() returns null in test with data provider | 
+        Laravel.io
+        
+    </title>
+
+    <meta name="description" content="The Laravel portal for problem solving, knowledge sharing and community building.">
+    <link rel="canonical" href="https://laravel.io/forum/authuser-returns-null-in-test-with-data-provider">
+
+    <!-- Scripts -->
+    <script src="Auth%20user()%20returns%20null%20in%20test%20with%20data%20provider%20Laravel.io_soubory/app.js" defer="defer"></script>
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="Auth%20user()%20returns%20null%20in%20test%20with%20data%20provider%20Laravel.io_soubory/inter.css">
+    <link href="Auth%20user()%20returns%20null%20in%20test%20with%20data%20provider%20Laravel.io_soubory/app.css" rel="stylesheet">
+
+    
+    <script>
+        window.Laravel = {"csrfToken":"Tptnu6GClOLb3E5YwPmLctS7Nem7NRsBSMsMWC8b"};
+    </script>
+
+    <link rel="alternate" type="application/atom+xml" href="https://laravel.io/forum/feed" title="Laravel.io Forum RSS Feed">
+    <link rel="alternate" type="application/atom+xml" href="https://laravel.io/articles/feed" title="Laravel.io Articles RSS Feed">
+    <link rel="apple-touch-icon" sizes="180x180" href="https://laravel.io/images/favicons/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://laravel.io/images/favicons/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="https://laravel.io/images/favicons/favicon-16x16.png">
+<link rel="manifest" href="https://laravel.io/site.webmanifest">
+<link rel="mask-icon" href="https://laravel.io/images/favicons/safari-pinned-tab.svg" color="#5bbad5">
+<meta name="msapplication-TileColor" content="#2b5797">
+<meta name="theme-color" content="#ffffff">
+    <!-- Twitter sharing -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Auth::user() returns null in test with data provider | Laravel.io">
+<meta name="twitter:creator" content="@laravelio">
+<!-- /Twitter sharing -->
+
+<!-- Facebook sharing -->
+<meta property="og:url" content="https://laravel.io/forum/authuser-returns-null-in-test-with-data-provider">
+<meta property="og:title" content="Auth::user() returns null in test with data provider | Laravel.io">
+
+    <meta property="og:image" content="https://laravel.io/images/laravelio-share.png">
+<!-- /Facebook sharing -->
+    <!-- Fathom - beautiful, simple website analytics -->
+    <script src="Auth%20user()%20returns%20null%20in%20test%20with%20data%20provider%20Laravel.io_soubory/script.js" site="UXCUXOED" defer="defer"></script>
+    <!-- / Fathom -->
+
+    <style>[wire\:loading], [wire\:loading\.delay], [wire\:loading\.inline-block], [wire\:loading\.inline], [wire\:loading\.block], [wire\:loading\.flex], [wire\:loading\.table], [wire\:loading\.grid], [wire\:loading\.inline-flex] {display: none;}[wire\:loading\.delay\.shortest], [wire\:loading\.delay\.shorter], [wire\:loading\.delay\.short], [wire\:loading\.delay\.long], [wire\:loading\.delay\.longer], [wire\:loading\.delay\.longest] {display:none;}[wire\:offline] {display: none;}[wire\:dirty]:not(textarea):not(input):not(select) {display: none;}input:-webkit-autofill, select:-webkit-autofill, textarea:-webkit-autofill {animation-duration: 50000s;animation-name: livewireautofill;}@keyframes livewireautofill { from {} }</style>
+<style>.choices{font-size:16px;margin-bottom:24px;overflow:hidden;position:relative}.choices:focus{outline:none}.choices:last-child{margin-bottom:0}.choices.is-open{overflow:initial}.choices.is-disabled .choices__inner,.choices.is-disabled .choices__input{background-color:#eaeaea;cursor:not-allowed;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}.choices.is-disabled .choices__item{cursor:not-allowed}.choices [hidden]{display:none!important}.choices[data-type*=select-one]{cursor:pointer}.choices[data-type*=select-one] .choices__inner{padding-bottom:7.5px}.choices[data-type*=select-one] .choices__input{background-color:#fff;border-bottom:1px solid #ddd;display:block;margin:0;padding:10px;width:100%}.choices[data-type*=select-one] .choices__button{background-image:url("data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjEiIGhlaWdodD0iMjEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGcgZmlsbC1ydWxlPSJldmVub2RkIj48cGF0aCBkPSJtMi41OTIuMDQ0IDE4LjM2NCAxOC4zNjQtMi41NDggMi41NDhMLjA0NCAyLjU5MnoiLz48cGF0aCBkPSJNMCAxOC4zNjQgMTguMzY0IDBsMi41NDggMi41NDhMMi41NDggMjAuOTEyeiIvPjwvZz48L3N2Zz4=");background-size:8px;border-radius:10em;height:20px;margin-right:25px;margin-top:-10px;opacity:.25;padding:0;position:absolute;right:0;top:50%;width:20px}.choices[data-type*=select-one] .choices__button:focus,.choices[data-type*=select-one] .choices__button:hover{opacity:1}.choices[data-type*=select-one] .choices__button:focus{box-shadow:0 0 0 2px #00bcd4}.choices[data-type*=select-one] .choices__item[data-value=""] .choices__button{display:none}.choices[data-type*=select-one]:after{border:5px solid transparent;border-top-color:#333;content:"";height:0;margin-top:-2.5px;pointer-events:none;position:absolute;right:11.5px;top:50%;width:0}.choices[data-type*=select-one].is-open:after{border-color:transparent transparent #333;margin-top:-7.5px}.choices[data-type*=select-one][dir=rtl]:after{left:11.5px;right:auto}.choices[data-type*=select-one][dir=rtl] .choices__button{left:0;margin-left:25px;margin-right:0;right:auto}.choices[data-type*=select-multiple] .choices__inner,.choices[data-type*=text] .choices__inner{cursor:text}.choices[data-type*=select-multiple] .choices__button,.choices[data-type*=text] .choices__button{background-image:url("data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjEiIGhlaWdodD0iMjEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGcgZmlsbD0iI0ZGRiIgZmlsbC1ydWxlPSJldmVub2RkIj48cGF0aCBkPSJtMi41OTIuMDQ0IDE4LjM2NCAxOC4zNjQtMi41NDggMi41NDhMLjA0NCAyLjU5MnoiLz48cGF0aCBkPSJNMCAxOC4zNjQgMTguMzY0IDBsMi41NDggMi41NDhMMi41NDggMjAuOTEyeiIvPjwvZz48L3N2Zz4=");background-size:8px;border-left:1px solid #008fa1;border-radius:0;display:inline-block;line-height:1;margin:0 -4px 0 8px;opacity:.75;padding-left:16px;position:relative;width:8px}.choices[data-type*=select-multiple] .choices__button:focus,.choices[data-type*=select-multiple] .choices__button:hover,.choices[data-type*=text] .choices__button:focus,.choices[data-type*=text] .choices__button:hover{opacity:1}.choices__inner{background-color:#f9f9f9;border:1px solid #ddd;border-radius:2.5px;display:inline-block;font-size:14px;min-height:44px;overflow:hidden;padding:7.5px 7.5px 3.75px;vertical-align:top;width:100%}.is-focused .choices__inner,.is-open .choices__inner{border-color:#b7b7b7}.is-open .choices__inner{border-radius:2.5px 2.5px 0 0}.is-flipped.is-open .choices__inner{border-radius:0 0 2.5px 2.5px}.choices__list{list-style:none;margin:0;padding-left:0}.choices__list--single{display:inline-block;padding:4px 16px 4px 4px;width:100%}[dir=rtl] .choices__list--single{padding-left:16px;padding-right:4px}.choices__list--single .choices__item{width:100%}.choices__list--multiple{display:inline}.choices__list--multiple .choices__item{background-color:#00bcd4;border:1px solid #00a5bb;border-radius:20px;box-sizing:border-box;color:#fff;display:inline-block;font-size:12px;font-weight:500;margin-bottom:3.75px;margin-right:3.75px;padding:4px 10px;vertical-align:middle;word-break:break-all}.choices__list--multiple .choices__item[data-deletable]{padding-right:5px}[dir=rtl] .choices__list--multiple .choices__item{margin-left:3.75px;margin-right:0}.choices__list--multiple .choices__item.is-highlighted{background-color:#00a5bb;border:1px solid #008fa1}.is-disabled .choices__list--multiple .choices__item{background-color:#aaa;border:1px solid #919191}.choices__list--dropdown{background-color:#fff;border:1px solid #ddd;border-bottom-left-radius:2.5px;border-bottom-right-radius:2.5px;margin-top:-1px;overflow:hidden;position:absolute;top:100%;visibility:hidden;width:100%;will-change:visibility;word-break:break-all;z-index:1}.choices__list--dropdown.is-active{visibility:visible}.is-open .choices__list--dropdown{border-color:#b7b7b7}.is-flipped .choices__list--dropdown{border-radius:.25rem .25rem 0 0;bottom:100%;margin-bottom:-1px;margin-top:0;top:auto}.choices__list--dropdown .choices__list{-webkit-overflow-scrolling:touch;max-height:300px;overflow:auto;position:relative;will-change:scroll-position}.choices__list--dropdown .choices__item{font-size:14px;padding:10px;position:relative}[dir=rtl] .choices__list--dropdown .choices__item{text-align:right}@media (min-width:640px){.choices__list--dropdown .choices__item--selectable{padding-right:100px}.choices__list--dropdown .choices__item--selectable:after{content:attr(data-select-text);font-size:12px;opacity:0;position:absolute;right:10px;top:50%;transform:translateY(-50%)}[dir=rtl] .choices__list--dropdown .choices__item--selectable{padding-left:100px;padding-right:10px;text-align:right}[dir=rtl] .choices__list--dropdown .choices__item--selectable:after{left:10px;right:auto}}.choices__list--dropdown .choices__item--selectable.is-highlighted{background-color:#f2f2f2}.choices__list--dropdown .choices__item--selectable.is-highlighted:after{opacity:.5}.choices__item{cursor:default}.choices__item--selectable{cursor:pointer}.choices__item--disabled{cursor:not-allowed;opacity:.5;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}.choices__heading{border-bottom:1px solid #f7f7f7;color:gray;font-size:12px;font-weight:600;padding:10px}.choices__button{-webkit-appearance:none;-moz-appearance:none;appearance:none;background-color:transparent;background-position:50%;background-repeat:no-repeat;border:0;cursor:pointer;text-indent:-9999px}.choices__button:focus{outline:none}.choices__input{background-color:#f9f9f9;border:0;border-radius:0;display:inline-block;font-size:14px;margin-bottom:5px;max-width:100%;padding:4px 0 4px 2px;vertical-align:baseline}.choices__input:focus{outline:0}[dir=rtl] .choices__input{padding-left:0;padding-right:2px}.choices__placeholder{opacity:.5}
+/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIndlYnBhY2s6Ly8uL25vZGVfbW9kdWxlcy9jaG9pY2VzLmpzL3B1YmxpYy9hc3NldHMvc3R5bGVzL2Nob2ljZXMuY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUdBLFNBSUUsY0FBZSxDQURmLGtCQUFtQixDQURuQixlQUFnQixDQURoQixpQkFJRixDQUNBLGVBQ0UsWUFDRixDQUNBLG9CQUNFLGVBQ0YsQ0FDQSxpQkFDRSxnQkFDRixDQUNBLDBFQUVFLHdCQUF5QixDQUN6QixrQkFBbUIsQ0FDbkIsd0JBQXlCLENBQ2pCLHFCQUFpQixDQUFqQixvQkFBaUIsQ0FBakIsZ0JBQ1YsQ0FDQSxvQ0FDRSxrQkFDRixDQUNBLGtCQUNFLHNCQUNGLENBRUEsZ0NBQ0UsY0FDRixDQUNBLGdEQUNFLG9CQUNGLENBQ0EsZ0RBS0UscUJBQXNCLENBRHRCLDRCQUE2QixDQUg3QixhQUFjLENBS2QsUUFBUyxDQUhULFlBQWEsQ0FEYixVQUtGLENBQ0EsaURBQ0UsOFVBQTJYLENBRTNYLG1CQUFvQixDQVFwQixrQkFBbUIsQ0FGbkIsV0FBWSxDQURaLGlCQUFrQixDQURsQixnQkFBaUIsQ0FLakIsV0FBYSxDQVZiLFNBQVUsQ0FFVixpQkFBa0IsQ0FFbEIsT0FBUSxDQURSLE9BQVEsQ0FLUixVQUdGLENBQ0EsOEdBQ0UsU0FDRixDQUNBLHVEQUNFLDRCQUNGLENBQ0EsK0VBQ0UsWUFDRixDQUNBLHNDQU1FLDRCQUFpQixDQUFqQixxQkFBaUIsQ0FMakIsVUFBVyxDQUNYLFFBQVMsQ0FRVCxpQkFBa0IsQ0FDbEIsbUJBQW9CLENBSnBCLGlCQUFrQixDQUNsQixZQUFhLENBQ2IsT0FBUSxDQU5SLE9BU0YsQ0FDQSw4Q0FDRSx5Q0FBc0QsQ0FDdEQsaUJBQ0YsQ0FDQSwrQ0FDRSxXQUFZLENBQ1osVUFDRixDQUNBLDBEQUVFLE1BQU8sQ0FDUCxnQkFBaUIsQ0FDakIsY0FBZSxDQUhmLFVBSUYsQ0FFQSwrRkFFRSxXQUNGLENBQ0EsaUdBVUUsOFZBQTJYLENBQzNYLG1CQUFvQixDQUZwQiw2QkFBOEIsQ0FNOUIsZUFBZ0IsQ0FaaEIsb0JBQXFCLENBVXJCLGFBQWMsQ0FOZCxtQkFBZ0IsQ0FPaEIsV0FBYSxDQU5iLGlCQUFrQixDQU5sQixpQkFBa0IsQ0FVbEIsU0FJRixDQUNBLDBOQUdFLFNBQ0YsQ0FFQSxnQkFJRSx3QkFBeUIsQ0FFekIscUJBQXNCLENBQ3RCLG1CQUFvQixDQU5wQixvQkFBcUIsQ0FPckIsY0FBZSxDQUNmLGVBQWdCLENBQ2hCLGVBQWdCLENBTGhCLDBCQUEyQixDQUgzQixrQkFBbUIsQ0FDbkIsVUFRRixDQUNBLHFEQUNFLG9CQUNGLENBQ0EseUJBQ0UsNkJBQ0YsQ0FDQSxvQ0FDRSw2QkFDRixDQUVBLGVBR0UsZUFBZ0IsQ0FGaEIsUUFBUyxDQUNULGNBRUYsQ0FFQSx1QkFDRSxvQkFBcUIsQ0FDckIsd0JBQXlCLENBQ3pCLFVBQ0YsQ0FDQSxpQ0FFRSxpQkFBa0IsQ0FEbEIsaUJBRUYsQ0FDQSxzQ0FDRSxVQUNGLENBRUEseUJBQ0UsY0FDRixDQUNBLHdDQVNFLHdCQUF5QixDQUN6Qix3QkFBeUIsQ0FQekIsa0JBQW1CLENBVW5CLHFCQUFzQixDQUZ0QixVQUFXLENBVlgsb0JBQXFCLENBSXJCLGNBQWUsQ0FDZixlQUFnQixDQUVoQixvQkFBcUIsQ0FEckIsbUJBQW9CLENBSHBCLGdCQUFpQixDQUZqQixxQkFBc0IsQ0FVdEIsb0JBRUYsQ0FDQSx3REFDRSxpQkFDRixDQUNBLGtEQUVFLGtCQUFtQixDQURuQixjQUVGLENBQ0EsdURBQ0Usd0JBQXlCLENBQ3pCLHdCQUNGLENBQ0EscURBQ0UscUJBQXlCLENBQ3pCLHdCQUNGLENBRUEseUJBS0UscUJBQXNCLENBQ3RCLHFCQUFzQixDQUd0QiwrQkFBZ0MsQ0FDaEMsZ0NBQWlDLENBRmpDLGVBQWdCLENBR2hCLGVBQWdCLENBUmhCLGlCQUFrQixDQUlsQixRQUFTLENBTlQsaUJBQWtCLENBR2xCLFVBQVcsQ0FTWCxzQkFBdUIsQ0FEdkIsb0JBQXFCLENBVnJCLFNBWUYsQ0FDQSxtQ0FDRSxrQkFDRixDQUNBLGtDQUNFLG9CQUNGLENBQ0EscUNBS0UsK0JBQWtDLENBSGxDLFdBQVksQ0FFWixrQkFBbUIsQ0FEbkIsWUFBYSxDQUZiLFFBS0YsQ0FDQSx3Q0FJRSxnQ0FBaUMsQ0FGakMsZ0JBQWlCLENBQ2pCLGFBQWMsQ0FGZCxpQkFBa0IsQ0FJbEIsMkJBQ0YsQ0FDQSx3Q0FHRSxjQUFlLENBRGYsWUFBYSxDQURiLGlCQUdGLENBQ0Esa0RBQ0UsZ0JBQ0YsQ0FDQSx5QkFDRSxvREFDRSxtQkFDRixDQUNBLDBEQUNFLDhCQUErQixDQUMvQixjQUFlLENBQ2YsU0FBVSxDQUNWLGlCQUFrQixDQUNsQixVQUFXLENBQ1gsT0FBUSxDQUNSLDBCQUNGLENBQ0EsOERBRUUsa0JBQW1CLENBQ25CLGtCQUFtQixDQUZuQixnQkFHRixDQUNBLG9FQUVFLFNBQVUsQ0FEVixVQUVGLENBQ0YsQ0FDQSxtRUFDRSx3QkFDRixDQUNBLHlFQUNFLFVBQ0YsQ0FFQSxlQUNFLGNBQ0YsQ0FFQSwyQkFDRSxjQUNGLENBRUEseUJBQ0Usa0JBQW1CLENBR25CLFVBQVksQ0FGWix3QkFBeUIsQ0FDakIscUJBQWlCLENBQWpCLG9CQUFpQixDQUFqQixnQkFFVixDQUVBLGtCQUlFLCtCQUFnQyxDQUNoQyxVQUFXLENBSFgsY0FBZSxDQURmLGVBQWdCLENBRWhCLFlBR0YsQ0FFQSxpQkFFRSx1QkFBd0IsQ0FDaEIsb0JBQWdCLENBQWhCLGVBQWdCLENBRXhCLDRCQUE2QixDQUU3Qix1QkFBMkIsQ0FEM0IsMkJBQTRCLENBRjVCLFFBQVMsQ0FJVCxjQUFlLENBUGYsbUJBUUYsQ0FDQSx1QkFDRSxZQUNGLENBRUEsZ0JBR0Usd0JBQXlCLENBR3pCLFFBQVMsQ0FDVCxlQUFnQixDQU5oQixvQkFBcUIsQ0FHckIsY0FBZSxDQUNmLGlCQUFrQixDQUdsQixjQUFlLENBQ2YscUJBQXNCLENBUHRCLHVCQVFGLENBQ0Esc0JBQ0UsU0FDRixDQUNBLDBCQUVFLGNBQWUsQ0FEZixpQkFFRixDQUVBLHNCQUNFLFVBQ0YiLCJzb3VyY2VzQ29udGVudCI6WyIvKiA9PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09XG49ICAgICAgICAgICAgQ2hvaWNlcyAgICAgICAgICAgID1cbj09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT0gKi9cbi5jaG9pY2VzIHtcbiAgcG9zaXRpb246IHJlbGF0aXZlO1xuICBvdmVyZmxvdzogaGlkZGVuO1xuICBtYXJnaW4tYm90dG9tOiAyNHB4O1xuICBmb250LXNpemU6IDE2cHg7XG59XG4uY2hvaWNlczpmb2N1cyB7XG4gIG91dGxpbmU6IG5vbmU7XG59XG4uY2hvaWNlczpsYXN0LWNoaWxkIHtcbiAgbWFyZ2luLWJvdHRvbTogMDtcbn1cbi5jaG9pY2VzLmlzLW9wZW4ge1xuICBvdmVyZmxvdzogaW5pdGlhbDtcbn1cbi5jaG9pY2VzLmlzLWRpc2FibGVkIC5jaG9pY2VzX19pbm5lcixcbi5jaG9pY2VzLmlzLWRpc2FibGVkIC5jaG9pY2VzX19pbnB1dCB7XG4gIGJhY2tncm91bmQtY29sb3I6ICNlYWVhZWE7XG4gIGN1cnNvcjogbm90LWFsbG93ZWQ7XG4gIC13ZWJraXQtdXNlci1zZWxlY3Q6IG5vbmU7XG4gICAgICAgICAgdXNlci1zZWxlY3Q6IG5vbmU7XG59XG4uY2hvaWNlcy5pcy1kaXNhYmxlZCAuY2hvaWNlc19faXRlbSB7XG4gIGN1cnNvcjogbm90LWFsbG93ZWQ7XG59XG4uY2hvaWNlcyBbaGlkZGVuXSB7XG4gIGRpc3BsYXk6IG5vbmUgIWltcG9ydGFudDtcbn1cblxuLmNob2ljZXNbZGF0YS10eXBlKj1zZWxlY3Qtb25lXSB7XG4gIGN1cnNvcjogcG9pbnRlcjtcbn1cbi5jaG9pY2VzW2RhdGEtdHlwZSo9c2VsZWN0LW9uZV0gLmNob2ljZXNfX2lubmVyIHtcbiAgcGFkZGluZy1ib3R0b206IDcuNXB4O1xufVxuLmNob2ljZXNbZGF0YS10eXBlKj1zZWxlY3Qtb25lXSAuY2hvaWNlc19faW5wdXQge1xuICBkaXNwbGF5OiBibG9jaztcbiAgd2lkdGg6IDEwMCU7XG4gIHBhZGRpbmc6IDEwcHg7XG4gIGJvcmRlci1ib3R0b206IDFweCBzb2xpZCAjZGRkO1xuICBiYWNrZ3JvdW5kLWNvbG9yOiAjZmZmO1xuICBtYXJnaW46IDA7XG59XG4uY2hvaWNlc1tkYXRhLXR5cGUqPXNlbGVjdC1vbmVdIC5jaG9pY2VzX19idXR0b24ge1xuICBiYWNrZ3JvdW5kLWltYWdlOiB1cmwoXCJkYXRhOmltYWdlL3N2Zyt4bWw7YmFzZTY0LFBITjJaeUIzYVdSMGFEMGlNakVpSUdobGFXZG9kRDBpTWpFaUlIWnBaWGRDYjNnOUlqQWdNQ0F5TVNBeU1TSWdlRzFzYm5NOUltaDBkSEE2THk5M2QzY3Vkek11YjNKbkx6SXdNREF2YzNabklqNDhaeUJtYVd4c1BTSWpNREF3SWlCbWFXeHNMWEoxYkdVOUltVjJaVzV2WkdRaVBqeHdZWFJvSUdROUlrMHlMalU1TWk0d05EUnNNVGd1TXpZMElERTRMak0yTkMweUxqVTBPQ0F5TGpVME9Fd3VNRFEwSURJdU5Ua3llaUl2UGp4d1lYUm9JR1E5SWswd0lERTRMak0yTkV3eE9DNHpOalFnTUd3eUxqVTBPQ0F5TGpVME9Fd3lMalUwT0NBeU1DNDVNVEo2SWk4K1BDOW5Qand2YzNablBnPT1cIik7XG4gIHBhZGRpbmc6IDA7XG4gIGJhY2tncm91bmQtc2l6ZTogOHB4O1xuICBwb3NpdGlvbjogYWJzb2x1dGU7XG4gIHRvcDogNTAlO1xuICByaWdodDogMDtcbiAgbWFyZ2luLXRvcDogLTEwcHg7XG4gIG1hcmdpbi1yaWdodDogMjVweDtcbiAgaGVpZ2h0OiAyMHB4O1xuICB3aWR0aDogMjBweDtcbiAgYm9yZGVyLXJhZGl1czogMTBlbTtcbiAgb3BhY2l0eTogMC4yNTtcbn1cbi5jaG9pY2VzW2RhdGEtdHlwZSo9c2VsZWN0LW9uZV0gLmNob2ljZXNfX2J1dHRvbjpob3ZlciwgLmNob2ljZXNbZGF0YS10eXBlKj1zZWxlY3Qtb25lXSAuY2hvaWNlc19fYnV0dG9uOmZvY3VzIHtcbiAgb3BhY2l0eTogMTtcbn1cbi5jaG9pY2VzW2RhdGEtdHlwZSo9c2VsZWN0LW9uZV0gLmNob2ljZXNfX2J1dHRvbjpmb2N1cyB7XG4gIGJveC1zaGFkb3c6IDAgMCAwIDJweCAjMDBiY2Q0O1xufVxuLmNob2ljZXNbZGF0YS10eXBlKj1zZWxlY3Qtb25lXSAuY2hvaWNlc19faXRlbVtkYXRhLXZhbHVlPVwiXCJdIC5jaG9pY2VzX19idXR0b24ge1xuICBkaXNwbGF5OiBub25lO1xufVxuLmNob2ljZXNbZGF0YS10eXBlKj1zZWxlY3Qtb25lXTo6YWZ0ZXIge1xuICBjb250ZW50OiBcIlwiO1xuICBoZWlnaHQ6IDA7XG4gIHdpZHRoOiAwO1xuICBib3JkZXItc3R5bGU6IHNvbGlkO1xuICBib3JkZXItY29sb3I6ICMzMzMgdHJhbnNwYXJlbnQgdHJhbnNwYXJlbnQgdHJhbnNwYXJlbnQ7XG4gIGJvcmRlci13aWR0aDogNXB4O1xuICBwb3NpdGlvbjogYWJzb2x1dGU7XG4gIHJpZ2h0OiAxMS41cHg7XG4gIHRvcDogNTAlO1xuICBtYXJnaW4tdG9wOiAtMi41cHg7XG4gIHBvaW50ZXItZXZlbnRzOiBub25lO1xufVxuLmNob2ljZXNbZGF0YS10eXBlKj1zZWxlY3Qtb25lXS5pcy1vcGVuOjphZnRlciB7XG4gIGJvcmRlci1jb2xvcjogdHJhbnNwYXJlbnQgdHJhbnNwYXJlbnQgIzMzMyB0cmFuc3BhcmVudDtcbiAgbWFyZ2luLXRvcDogLTcuNXB4O1xufVxuLmNob2ljZXNbZGF0YS10eXBlKj1zZWxlY3Qtb25lXVtkaXI9cnRsXTo6YWZ0ZXIge1xuICBsZWZ0OiAxMS41cHg7XG4gIHJpZ2h0OiBhdXRvO1xufVxuLmNob2ljZXNbZGF0YS10eXBlKj1zZWxlY3Qtb25lXVtkaXI9cnRsXSAuY2hvaWNlc19fYnV0dG9uIHtcbiAgcmlnaHQ6IGF1dG87XG4gIGxlZnQ6IDA7XG4gIG1hcmdpbi1sZWZ0OiAyNXB4O1xuICBtYXJnaW4tcmlnaHQ6IDA7XG59XG5cbi5jaG9pY2VzW2RhdGEtdHlwZSo9c2VsZWN0LW11bHRpcGxlXSAuY2hvaWNlc19faW5uZXIsXG4uY2hvaWNlc1tkYXRhLXR5cGUqPXRleHRdIC5jaG9pY2VzX19pbm5lciB7XG4gIGN1cnNvcjogdGV4dDtcbn1cbi5jaG9pY2VzW2RhdGEtdHlwZSo9c2VsZWN0LW11bHRpcGxlXSAuY2hvaWNlc19fYnV0dG9uLFxuLmNob2ljZXNbZGF0YS10eXBlKj10ZXh0XSAuY2hvaWNlc19fYnV0dG9uIHtcbiAgcG9zaXRpb246IHJlbGF0aXZlO1xuICBkaXNwbGF5OiBpbmxpbmUtYmxvY2s7XG4gIG1hcmdpbi10b3A6IDA7XG4gIG1hcmdpbi1yaWdodDogLTRweDtcbiAgbWFyZ2luLWJvdHRvbTogMDtcbiAgbWFyZ2luLWxlZnQ6IDhweDtcbiAgcGFkZGluZy1sZWZ0OiAxNnB4O1xuICBib3JkZXItbGVmdDogMXB4IHNvbGlkICMwMDhmYTE7XG4gIGJhY2tncm91bmQtaW1hZ2U6IHVybChcImRhdGE6aW1hZ2Uvc3ZnK3htbDtiYXNlNjQsUEhOMlp5QjNhV1IwYUQwaU1qRWlJR2hsYVdkb2REMGlNakVpSUhacFpYZENiM2c5SWpBZ01DQXlNU0F5TVNJZ2VHMXNibk05SW1oMGRIQTZMeTkzZDNjdWR6TXViM0puTHpJd01EQXZjM1puSWo0OFp5Qm1hV3hzUFNJalJrWkdJaUJtYVd4c0xYSjFiR1U5SW1WMlpXNXZaR1FpUGp4d1lYUm9JR1E5SWsweUxqVTVNaTR3TkRSc01UZ3VNelkwSURFNExqTTJOQzB5TGpVME9DQXlMalUwT0V3dU1EUTBJREl1TlRreWVpSXZQanh3WVhSb0lHUTlJazB3SURFNExqTTJORXd4T0M0ek5qUWdNR3d5TGpVME9DQXlMalUwT0V3eUxqVTBPQ0F5TUM0NU1USjZJaTgrUEM5blBqd3ZjM1puUGc9PVwiKTtcbiAgYmFja2dyb3VuZC1zaXplOiA4cHg7XG4gIHdpZHRoOiA4cHg7XG4gIGxpbmUtaGVpZ2h0OiAxO1xuICBvcGFjaXR5OiAwLjc1O1xuICBib3JkZXItcmFkaXVzOiAwO1xufVxuLmNob2ljZXNbZGF0YS10eXBlKj1zZWxlY3QtbXVsdGlwbGVdIC5jaG9pY2VzX19idXR0b246aG92ZXIsIC5jaG9pY2VzW2RhdGEtdHlwZSo9c2VsZWN0LW11bHRpcGxlXSAuY2hvaWNlc19fYnV0dG9uOmZvY3VzLFxuLmNob2ljZXNbZGF0YS10eXBlKj10ZXh0XSAuY2hvaWNlc19fYnV0dG9uOmhvdmVyLFxuLmNob2ljZXNbZGF0YS10eXBlKj10ZXh0XSAuY2hvaWNlc19fYnV0dG9uOmZvY3VzIHtcbiAgb3BhY2l0eTogMTtcbn1cblxuLmNob2ljZXNfX2lubmVyIHtcbiAgZGlzcGxheTogaW5saW5lLWJsb2NrO1xuICB2ZXJ0aWNhbC1hbGlnbjogdG9wO1xuICB3aWR0aDogMTAwJTtcbiAgYmFja2dyb3VuZC1jb2xvcjogI2Y5ZjlmOTtcbiAgcGFkZGluZzogNy41cHggNy41cHggMy43NXB4O1xuICBib3JkZXI6IDFweCBzb2xpZCAjZGRkO1xuICBib3JkZXItcmFkaXVzOiAyLjVweDtcbiAgZm9udC1zaXplOiAxNHB4O1xuICBtaW4taGVpZ2h0OiA0NHB4O1xuICBvdmVyZmxvdzogaGlkZGVuO1xufVxuLmlzLWZvY3VzZWQgLmNob2ljZXNfX2lubmVyLCAuaXMtb3BlbiAuY2hvaWNlc19faW5uZXIge1xuICBib3JkZXItY29sb3I6ICNiN2I3Yjc7XG59XG4uaXMtb3BlbiAuY2hvaWNlc19faW5uZXIge1xuICBib3JkZXItcmFkaXVzOiAyLjVweCAyLjVweCAwIDA7XG59XG4uaXMtZmxpcHBlZC5pcy1vcGVuIC5jaG9pY2VzX19pbm5lciB7XG4gIGJvcmRlci1yYWRpdXM6IDAgMCAyLjVweCAyLjVweDtcbn1cblxuLmNob2ljZXNfX2xpc3Qge1xuICBtYXJnaW46IDA7XG4gIHBhZGRpbmctbGVmdDogMDtcbiAgbGlzdC1zdHlsZTogbm9uZTtcbn1cblxuLmNob2ljZXNfX2xpc3QtLXNpbmdsZSB7XG4gIGRpc3BsYXk6IGlubGluZS1ibG9jaztcbiAgcGFkZGluZzogNHB4IDE2cHggNHB4IDRweDtcbiAgd2lkdGg6IDEwMCU7XG59XG5bZGlyPXJ0bF0gLmNob2ljZXNfX2xpc3QtLXNpbmdsZSB7XG4gIHBhZGRpbmctcmlnaHQ6IDRweDtcbiAgcGFkZGluZy1sZWZ0OiAxNnB4O1xufVxuLmNob2ljZXNfX2xpc3QtLXNpbmdsZSAuY2hvaWNlc19faXRlbSB7XG4gIHdpZHRoOiAxMDAlO1xufVxuXG4uY2hvaWNlc19fbGlzdC0tbXVsdGlwbGUge1xuICBkaXNwbGF5OiBpbmxpbmU7XG59XG4uY2hvaWNlc19fbGlzdC0tbXVsdGlwbGUgLmNob2ljZXNfX2l0ZW0ge1xuICBkaXNwbGF5OiBpbmxpbmUtYmxvY2s7XG4gIHZlcnRpY2FsLWFsaWduOiBtaWRkbGU7XG4gIGJvcmRlci1yYWRpdXM6IDIwcHg7XG4gIHBhZGRpbmc6IDRweCAxMHB4O1xuICBmb250LXNpemU6IDEycHg7XG4gIGZvbnQtd2VpZ2h0OiA1MDA7XG4gIG1hcmdpbi1yaWdodDogMy43NXB4O1xuICBtYXJnaW4tYm90dG9tOiAzLjc1cHg7XG4gIGJhY2tncm91bmQtY29sb3I6ICMwMGJjZDQ7XG4gIGJvcmRlcjogMXB4IHNvbGlkICMwMGE1YmI7XG4gIGNvbG9yOiAjZmZmO1xuICB3b3JkLWJyZWFrOiBicmVhay1hbGw7XG4gIGJveC1zaXppbmc6IGJvcmRlci1ib3g7XG59XG4uY2hvaWNlc19fbGlzdC0tbXVsdGlwbGUgLmNob2ljZXNfX2l0ZW1bZGF0YS1kZWxldGFibGVdIHtcbiAgcGFkZGluZy1yaWdodDogNXB4O1xufVxuW2Rpcj1ydGxdIC5jaG9pY2VzX19saXN0LS1tdWx0aXBsZSAuY2hvaWNlc19faXRlbSB7XG4gIG1hcmdpbi1yaWdodDogMDtcbiAgbWFyZ2luLWxlZnQ6IDMuNzVweDtcbn1cbi5jaG9pY2VzX19saXN0LS1tdWx0aXBsZSAuY2hvaWNlc19faXRlbS5pcy1oaWdobGlnaHRlZCB7XG4gIGJhY2tncm91bmQtY29sb3I6ICMwMGE1YmI7XG4gIGJvcmRlcjogMXB4IHNvbGlkICMwMDhmYTE7XG59XG4uaXMtZGlzYWJsZWQgLmNob2ljZXNfX2xpc3QtLW11bHRpcGxlIC5jaG9pY2VzX19pdGVtIHtcbiAgYmFja2dyb3VuZC1jb2xvcjogI2FhYWFhYTtcbiAgYm9yZGVyOiAxcHggc29saWQgIzkxOTE5MTtcbn1cblxuLmNob2ljZXNfX2xpc3QtLWRyb3Bkb3duIHtcbiAgdmlzaWJpbGl0eTogaGlkZGVuO1xuICB6LWluZGV4OiAxO1xuICBwb3NpdGlvbjogYWJzb2x1dGU7XG4gIHdpZHRoOiAxMDAlO1xuICBiYWNrZ3JvdW5kLWNvbG9yOiAjZmZmO1xuICBib3JkZXI6IDFweCBzb2xpZCAjZGRkO1xuICB0b3A6IDEwMCU7XG4gIG1hcmdpbi10b3A6IC0xcHg7XG4gIGJvcmRlci1ib3R0b20tbGVmdC1yYWRpdXM6IDIuNXB4O1xuICBib3JkZXItYm90dG9tLXJpZ2h0LXJhZGl1czogMi41cHg7XG4gIG92ZXJmbG93OiBoaWRkZW47XG4gIHdvcmQtYnJlYWs6IGJyZWFrLWFsbDtcbiAgd2lsbC1jaGFuZ2U6IHZpc2liaWxpdHk7XG59XG4uY2hvaWNlc19fbGlzdC0tZHJvcGRvd24uaXMtYWN0aXZlIHtcbiAgdmlzaWJpbGl0eTogdmlzaWJsZTtcbn1cbi5pcy1vcGVuIC5jaG9pY2VzX19saXN0LS1kcm9wZG93biB7XG4gIGJvcmRlci1jb2xvcjogI2I3YjdiNztcbn1cbi5pcy1mbGlwcGVkIC5jaG9pY2VzX19saXN0LS1kcm9wZG93biB7XG4gIHRvcDogYXV0bztcbiAgYm90dG9tOiAxMDAlO1xuICBtYXJnaW4tdG9wOiAwO1xuICBtYXJnaW4tYm90dG9tOiAtMXB4O1xuICBib3JkZXItcmFkaXVzOiAwLjI1cmVtIDAuMjVyZW0gMCAwO1xufVxuLmNob2ljZXNfX2xpc3QtLWRyb3Bkb3duIC5jaG9pY2VzX19saXN0IHtcbiAgcG9zaXRpb246IHJlbGF0aXZlO1xuICBtYXgtaGVpZ2h0OiAzMDBweDtcbiAgb3ZlcmZsb3c6IGF1dG87XG4gIC13ZWJraXQtb3ZlcmZsb3ctc2Nyb2xsaW5nOiB0b3VjaDtcbiAgd2lsbC1jaGFuZ2U6IHNjcm9sbC1wb3NpdGlvbjtcbn1cbi5jaG9pY2VzX19saXN0LS1kcm9wZG93biAuY2hvaWNlc19faXRlbSB7XG4gIHBvc2l0aW9uOiByZWxhdGl2ZTtcbiAgcGFkZGluZzogMTBweDtcbiAgZm9udC1zaXplOiAxNHB4O1xufVxuW2Rpcj1ydGxdIC5jaG9pY2VzX19saXN0LS1kcm9wZG93biAuY2hvaWNlc19faXRlbSB7XG4gIHRleHQtYWxpZ246IHJpZ2h0O1xufVxuQG1lZGlhIChtaW4td2lkdGg6IDY0MHB4KSB7XG4gIC5jaG9pY2VzX19saXN0LS1kcm9wZG93biAuY2hvaWNlc19faXRlbS0tc2VsZWN0YWJsZSB7XG4gICAgcGFkZGluZy1yaWdodDogMTAwcHg7XG4gIH1cbiAgLmNob2ljZXNfX2xpc3QtLWRyb3Bkb3duIC5jaG9pY2VzX19pdGVtLS1zZWxlY3RhYmxlOjphZnRlciB7XG4gICAgY29udGVudDogYXR0cihkYXRhLXNlbGVjdC10ZXh0KTtcbiAgICBmb250LXNpemU6IDEycHg7XG4gICAgb3BhY2l0eTogMDtcbiAgICBwb3NpdGlvbjogYWJzb2x1dGU7XG4gICAgcmlnaHQ6IDEwcHg7XG4gICAgdG9wOiA1MCU7XG4gICAgdHJhbnNmb3JtOiB0cmFuc2xhdGVZKC01MCUpO1xuICB9XG4gIFtkaXI9cnRsXSAuY2hvaWNlc19fbGlzdC0tZHJvcGRvd24gLmNob2ljZXNfX2l0ZW0tLXNlbGVjdGFibGUge1xuICAgIHRleHQtYWxpZ246IHJpZ2h0O1xuICAgIHBhZGRpbmctbGVmdDogMTAwcHg7XG4gICAgcGFkZGluZy1yaWdodDogMTBweDtcbiAgfVxuICBbZGlyPXJ0bF0gLmNob2ljZXNfX2xpc3QtLWRyb3Bkb3duIC5jaG9pY2VzX19pdGVtLS1zZWxlY3RhYmxlOjphZnRlciB7XG4gICAgcmlnaHQ6IGF1dG87XG4gICAgbGVmdDogMTBweDtcbiAgfVxufVxuLmNob2ljZXNfX2xpc3QtLWRyb3Bkb3duIC5jaG9pY2VzX19pdGVtLS1zZWxlY3RhYmxlLmlzLWhpZ2hsaWdodGVkIHtcbiAgYmFja2dyb3VuZC1jb2xvcjogI2YyZjJmMjtcbn1cbi5jaG9pY2VzX19saXN0LS1kcm9wZG93biAuY2hvaWNlc19faXRlbS0tc2VsZWN0YWJsZS5pcy1oaWdobGlnaHRlZDo6YWZ0ZXIge1xuICBvcGFjaXR5OiAwLjU7XG59XG5cbi5jaG9pY2VzX19pdGVtIHtcbiAgY3Vyc29yOiBkZWZhdWx0O1xufVxuXG4uY2hvaWNlc19faXRlbS0tc2VsZWN0YWJsZSB7XG4gIGN1cnNvcjogcG9pbnRlcjtcbn1cblxuLmNob2ljZXNfX2l0ZW0tLWRpc2FibGVkIHtcbiAgY3Vyc29yOiBub3QtYWxsb3dlZDtcbiAgLXdlYmtpdC11c2VyLXNlbGVjdDogbm9uZTtcbiAgICAgICAgICB1c2VyLXNlbGVjdDogbm9uZTtcbiAgb3BhY2l0eTogMC41O1xufVxuXG4uY2hvaWNlc19faGVhZGluZyB7XG4gIGZvbnQtd2VpZ2h0OiA2MDA7XG4gIGZvbnQtc2l6ZTogMTJweDtcbiAgcGFkZGluZzogMTBweDtcbiAgYm9yZGVyLWJvdHRvbTogMXB4IHNvbGlkICNmN2Y3Zjc7XG4gIGNvbG9yOiBncmF5O1xufVxuXG4uY2hvaWNlc19fYnV0dG9uIHtcbiAgdGV4dC1pbmRlbnQ6IC05OTk5cHg7XG4gIC13ZWJraXQtYXBwZWFyYW5jZTogbm9uZTtcbiAgICAgICAgICBhcHBlYXJhbmNlOiBub25lO1xuICBib3JkZXI6IDA7XG4gIGJhY2tncm91bmQtY29sb3I6IHRyYW5zcGFyZW50O1xuICBiYWNrZ3JvdW5kLXJlcGVhdDogbm8tcmVwZWF0O1xuICBiYWNrZ3JvdW5kLXBvc2l0aW9uOiBjZW50ZXI7XG4gIGN1cnNvcjogcG9pbnRlcjtcbn1cbi5jaG9pY2VzX19idXR0b246Zm9jdXMge1xuICBvdXRsaW5lOiBub25lO1xufVxuXG4uY2hvaWNlc19faW5wdXQge1xuICBkaXNwbGF5OiBpbmxpbmUtYmxvY2s7XG4gIHZlcnRpY2FsLWFsaWduOiBiYXNlbGluZTtcbiAgYmFja2dyb3VuZC1jb2xvcjogI2Y5ZjlmOTtcbiAgZm9udC1zaXplOiAxNHB4O1xuICBtYXJnaW4tYm90dG9tOiA1cHg7XG4gIGJvcmRlcjogMDtcbiAgYm9yZGVyLXJhZGl1czogMDtcbiAgbWF4LXdpZHRoOiAxMDAlO1xuICBwYWRkaW5nOiA0cHggMCA0cHggMnB4O1xufVxuLmNob2ljZXNfX2lucHV0OmZvY3VzIHtcbiAgb3V0bGluZTogMDtcbn1cbltkaXI9cnRsXSAuY2hvaWNlc19faW5wdXQge1xuICBwYWRkaW5nLXJpZ2h0OiAycHg7XG4gIHBhZGRpbmctbGVmdDogMDtcbn1cblxuLmNob2ljZXNfX3BsYWNlaG9sZGVyIHtcbiAgb3BhY2l0eTogMC41O1xufVxuXG4vKiA9PT09PSAgRW5kIG9mIENob2ljZXMgID09PT09PSAqL1xuIl0sInNvdXJjZVJvb3QiOiIifQ== */</style></head>
+
+<body class=" font-sans bg-white antialiased" :class="{ 'overflow-hidden': lockScroll }" x-data="{ lockScroll: false, activeModal: false }" @keyup.escape="activeModal = false">
+
+<section class="bg-lio-500 text-white text-base py-2 px-4 flex justify-center text-center">
+    <a class="md:flex md:items-center" href="https://github.com/sponsors/laravelio" target="_blank" rel="noopener">
+        <svg class="shrink-0 w-4 h-4 inline mr-2" viewBox="0 0 24 24" fill="currentColor">
+    <path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"></path>
+</svg> Support the ongoing development of Laravel.io  →
+    </a>
+</section>
+<nav class="shadow mb-1">
+    <div class="container mx-auto text-gray-800 lg:block lg:py-8" x-data="navConfig()" @click.outside="nav = false">
+        <div class="block bg-white 2xl:-mx-10">
+            <div class="lg:px-4 lg:flex">
+                <div class="block lg:flex lg:items-center lg:shrink-0">
+                    <div class="flex justify-between items-center p-4 lg:p-0">
+                        <a href="https://laravel.io/" class="mr-4">
+                            <img class="h-6 w-auto lg:h-8" src="Auth%20user()%20returns%20null%20in%20test%20with%20data%20provider%20Laravel.io_soubory/laravelio-logo.svg" alt="">
+                        </a>
+
+                        <div class="flex lg:hidden">
+                            <button @click="showSearch($event)">
+                                <svg class="w-6 h-6 mr-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true">
+  <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+</svg>                            </button>
+
+                            <button @click="nav = !nav">
+                                <svg x-show="!nav" class="w-6 h-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true">
+  <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h8m-8 6h16"></path>
+</svg>                            </button>
+
+                            <button @click="nav = !nav">
+                                <svg x-show="nav" class="w-6 h-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true" style="display: none;">
+  <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path>
+</svg>                            </button>
+                        </div>
+                    </div>
+
+                    <div class="mt-2 border-b lg:block lg:mt-0 lg:border-0 hidden" :class="{ 'block': nav, 'hidden': !nav }">
+                        <ul class="flex flex-col px-4 mb-2 gap-y-2 lg:flex-row lg:mb-0 lg:gap-6">
+                            <li class="rounded lg:mb-0 lg:hover:bg-gray-100  bg-gray-100 ">
+                                <a href="https://laravel.io/forum" class="inline-block w-full px-2 py-1">
+                                    Forum
+                                </a>
+                            </li>
+
+                            <li class="rounded lg:mb-0 lg:hover:bg-gray-100 ">
+                                <a href="https://laravel.io/articles" class="inline-block w-full px-2 py-1">
+                                    Articles
+                                </a>
+                            </li>
+
+                            <li class="rounded lg:mb-0 lg:hover:bg-gray-100">
+                                <a href="https://paste.laravel.io/" class="inline-block w-full px-2 py-1">
+                                    Pastebin
+                                </a>
+                            </li>
+
+                            <li class="rounded lg:mb-0 lg:hover:bg-gray-100">
+                                <div @click.outside="chat = false" class="relative">
+                                    <div>
+                                        <button @click="chat = !chat" class="flex items-center lg:mb-0 py-1 px-2">
+                                            Chat
+                                            <svg x-show="!chat" class="w-4 h-4 ml-1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+  <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"></path>
+</svg>                                            <svg x-show="chat" class="w-4 h-4 ml-1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" style="display: none;">
+  <path fill-rule="evenodd" d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+</svg>                                        </button>
+                                    </div>
+                                    <div x-show="chat" style="display: none;">
+                                        <ul class="ml-4 lg:absolute lg:flex lg:flex-col lg:ml-0 lg:mt-2 lg:w-36 lg:rounded-md lg:shadow-lg lg:z-50 lg:bg-white">
+                                            <li class="my-4 lg:hover:bg-gray-100 lg:my-0">
+                                                <a href="https://discord.gg/KxwQuKb" class="inline-block w-full lg:px-4 lg:py-3">Discord</a>
+                                            </li>
+
+                                            <li class="mb-4 lg:hover:bg-gray-100 lg:mb-0">
+                                                <a href="https://larachat.co/" class="inline-block w-full lg:px-4 lg:py-3">Larachat</a>
+                                            </li>
+
+                                            <li class="hover:bg-gray-100">
+                                                <a href="https://web.libera.chat/?nick=laravelnewbie&amp;channels=#laravel" class="inline-block w-full lg:px-4 lg:py-3">IRC</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </li>
+
+                            <li class="rounded lg:mb-0 lg:hover:bg-gray-100">
+                                <div @click.outside="community = false" class="relative">
+                                    <button @click="community = !community" class="flex items-center lg:mb-0 py-1 px-2">
+                                        Community
+                                        <svg x-show="!community" class="w-4 h-4 ml-1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+  <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"></path>
+</svg>                                        <svg x-show="community" class="w-4 h-4 ml-1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" style="display: none;">
+  <path fill-rule="evenodd" d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+</svg>                                    </button>
+
+                                    <div x-show="community" style="display: none;">
+                                        <ul class="ml-4 lg:absolute lg:flex lg:flex-col lg:ml-0 lg:mt-2 lg:w-36 lg:rounded-md lg:shadow-lg lg:z-50 lg:bg-white">
+                                            <li class="my-4 lg:hover:bg-gray-100 lg:my-0">
+                                                <a href="https://github.com/laravelio" class="inline-block w-full lg:px-4 lg:py-3">Github</a>
+                                            </li>
+
+                                            <li class="mb-4 lg:hover:bg-gray-100 lg:mb-0">
+                                                <a href="https://twitter.com/laravelio" class="inline-block w-full lg:px-4 lg:py-3">Twitter</a>
+                                            </li>
+
+                                            <li class="mb-4 lg:hover:bg-gray-100 lg:mb-0">
+                                                <a href="https://laravel.com/" class="inline-block w-full lg:px-4 lg:py-3">Laravel</a>
+                                            </li>
+
+                                            <li class="mb-4 lg:hover:bg-gray-100 lg:mb-0">
+                                                <a href="https://laracasts.com/" class="inline-block w-full lg:px-4 lg:py-3">Laracasts</a>
+                                            </li>
+
+                                            <li class="mb-4 lg:hover:bg-gray-100 lg:mb-0">
+                                                <a href="https://laravel-news.com/" class="inline-block w-full lg:px-4 lg:py-3">Laravel News</a>
+                                            </li>
+
+                                            <li class="mb-4 lg:hover:bg-gray-100 lg:mb-0">
+                                                <a href="https://laravelevents.com/" class="inline-block w-full lg:px-4 lg:py-3">Laravel Events</a>
+                                            </li>
+
+                                            <li class="mb-4 lg:hover:bg-gray-100 lg:mb-0">
+                                                <a href="https://www.laravelpodcast.com/" class="inline-block w-full lg:px-4 lg:py-3">Podcast</a>
+                                            </li>
+
+                                            <li class="hover:bg-gray-100">
+                                                <a href="https://ecosystem.laravel.io/" class="inline-block w-full lg:px-4 lg:py-3">Ecosystem</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="w-full block gap-x-4 lg:flex lg:items-center lg:justify-end">
+                    <div class="flex items-center">
+                        <button @click="showSearch($event)" @keyup.window.slash="showSearch($event)" class="hover:text-lio-500">
+                            <svg class="h-5 w-5 hidden lg:block" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true">
+  <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+</svg>                        </button>
+                        <div x-data="searchConfig()" x-init="$watch('searchVisible', value =&gt; toggle())" x-show="searchVisible" class="fixed inset-0 z-50 overflow-y-auto p-4 sm:p-6 md:p-20" role="dialog" aria-modal="true" style="display: none;">
+    <div class="fixed inset-0 bg-gray-700 bg-opacity-50 transition-opacity" aria-hidden="true"></div>
+
+    <div @click.outside="searchVisible = false" class="mx-auto max-w-xl transform overflow-hidden rounded-xl bg-white shadow-2xl ring-1 ring-black ring-opacity-5 transition-all">
+        <div class="relative">
+            <label for="search" class="sr-only">Search</label>
+
+            <svg class="pointer-events-none absolute top-3.5 left-4 h-5 w-5 text-gray-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                <path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clip-rule="evenodd"></path>
+            </svg>
+            <input x-model="searchQuery" @input.debounce.100ms="search" x-ref="search" type="text" name="search" id="search" class="h-12 w-full border-0 bg-transparent px-11 pr-4 text-gray-800 placeholder-gray-400 focus:ring-0 sm:text-sm" placeholder="Search..." role="combobox" aria-expanded="false" aria-controls="options">
+            <kbd @keyup.window.escape="searchVisible = false" @click="searchVisible = false" class="absolute top-3.5 right-4 text-xs rounded bg-gray-100 text-gray-500 px-2 py-1 cursor-pointer">ESC</kbd>
+        </div>
+
+        <div x-show="!searchQuery.length" class="border-t border-gray-100 py-14 px-6 text-center text-sm sm:px-14">
+            <svg class="mx-auto h-6 w-6 text-gray-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+            </svg>
+            <p class="mt-4 font-semibold text-gray-900">Search for threads and articles</p>
+            <p class="mt-2 text-gray-500">Quickly access threads and articles by running a global search.</p>
+        </div>
+
+        <ul x-show="searchQuery.length &amp;&amp; (threads.total || articles.total)" class="max-h-fit scroll-pt-11 scroll-pb-2 space-y-2 overflow-y-auto pb-2" id="options" role="listbox" style="display: none;">
+            <li>
+                <h2 class="bg-gray-100 py-2.5 px-4 font-semibold text-gray-900">
+                    Threads <span x-text="threads.formattedTotal()" class="ml-2 text-sm text-gray-500">0 Results</span>
+                </h2>
+                <ul class="mt-2 text-sm text-gray-800">
+                    <template x-for="thread in threads.threads">
+                        <li class="cursor-default select-none px-4 py-2 hover:bg-lio-100" :id="`option-${thread.id}`" role="option" tabindex="-1">
+                            <a :href="'/forum/'+thread.slug" class="flex flex-col">
+                                <span class="text-black-900 font-medium break-all" x-html="thread._highlightResult.subject.value"></span>
+                                <span class="text-black-900 break-all" x-html="thread._snippetResult.body.value"></span>
+                            </a>
+                        </li>
+                    </template>
+                </ul>
+            </li>
+            <li>
+                <h2 class="bg-gray-100 py-2.5 px-4 font-semibold text-gray-900">
+                    Articles <span x-text="articles.formattedTotal()" class="ml-2 text-sm text-gray-500">0 Results</span>
+                </h2>
+                <ul class="mt-2 text-sm text-gray-800">
+                    <template x-for="article in articles.articles">
+                        <li class="cursor-default select-none px-4 py-2 hover:bg-lio-100" :id="`option-${article.id}`" role="option" tabindex="-1">
+                            <a :href="'/articles/'+article.slug" class="flex flex-col">
+                                <span class="text-black-900 font-medium break-all" x-html="article._highlightResult.title.value"></span>
+                                <span class="text-black-900 break-all" x-html="article._snippetResult.body.value"></span>
+                            </a>
+                        </li>
+                    </template>
+                </ul>
+            </li>
+        </ul>
+
+        <div x-show="searchQuery.length &amp;&amp; !threads.total &amp;&amp; !articles.total" class="border-t border-gray-100 py-14 px-6 text-center text-sm sm:px-14" style="display: none;">
+            <svg class="mx-auto h-6 w-6 text-gray-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+            </svg>
+            <p class="mt-4 font-semibold text-gray-900">No results found</p>
+            <p class="mt-2 text-gray-500">We couldn’t find anything with that term. Please try again.</p>
+        </div>
+
+        <div class="flex flex-wrap justify-end items-center bg-gray-50 py-2.5 px-4 text-xs text-gray-700">
+            <a href="https://algolia.com/">
+                <img src="Auth%20user()%20returns%20null%20in%20test%20with%20data%20provider%20Laravel.io_soubory/algolia.svg" class="h-4">
+            </a>
+        </div>
+
+    </div>
+</div>
+                    </div>
+
+                    <ul class="lg:flex lg:items-center gap-x-8 hidden" :class="{ 'block': nav, 'hidden': !nav }">
+                                                    <li class="w-full rounded text-center lg:hover:bg-gray-100">
+                                <a href="https://laravel.io/register" class="inline-block w-full  p-2.5">
+                                    Register
+                                </a>
+                            </li>
+
+                            <li>
+                                <div class="hidden lg:block">
+                                    <span class="inline-flex rounded shadow flex items-center">
+            <a href="https://laravel.io/login" class="w-full bg-white border border-gray-200 rounded py-2 px-4 inline-flex justify-center text-lg leading-6 text-gray-900 hover:bg-gray-100">
+            <span class="flex items-center">
+                                            <svg class="w-5 h-5 mr-1" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true">
+  <path stroke-linecap="round" stroke-linejoin="round" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path>
+</svg>                                            Login
+                                        </span>
+        </a>
+    </span>
+                                </div>
+
+                                <a href="https://laravel.io/login" class="block w-full text-center bg-lio-500 text-white p-2.5 lg:hidden">
+                                    Login
+                                </a>
+                            </li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+        <section class="container flex justify-between mx-auto bg-white pb-4 px-4 lg:pb-10">
+        <h1 class="flex items-center gap-x-3.5 text-xl font-semibold lg:text-3xl">
+            <a href="https://laravel.io/forum" class="text-gray-400 hover:underline">Forum</a>
+            <svg class="w-6 h-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true">
+  <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"></path>
+</svg>            <span class="break-all">Auth::user() returns null in test with data provider</span>
+
+                    </h1>
+    </section>
+</nav>
+
+    <div class="bg-gray-100">        
+        
+            <section class="pt-5 pb-10 px-4 container mx-auto flex flex-col gap-x-12 lg:flex-row lg:pt-10 lg:pb-0">
+        <div class="w-full lg:w-3/4">
+            
+            <div class="relative">
+                <div class="relative flex flex-col gap-y-6 z-20">
+                    <div class="thread bg-white shadow rounded">
+    <div class="border-b">
+        <div class="px-6 pt-4 pb-0 lg:py-4">
+            <div class="flex flex-row justify-between items-start lg:items-center">
+                <div>
+                    <div class="flex flex-col lg:flex-row lg:items-center">
+                        <div class="flex items-center">
+                            <a href="https://laravel.io/user/mechelon">
+
+    <img src="Auth%20user()%20returns%20null%20in%20test%20with%20data%20provider%20Laravel.io_soubory/mechelon.jpg" alt="M Echelon" class="bg-gray-50 rounded-full w-6 h-6 rounded-full mr-3">
+
+    </a>
+
+                            <a href="https://laravel.io/user/mechelon" class="hover:underline">
+                                <span class="text-gray-900 mr-5">mechelon</span>
+                            </a>
+                        </div>
+
+                        <span class="font-mono text-gray-700 mt-1 lg:mt-0">
+                            2 years ago
+                        </span>
+                    </div>
+                </div>
+
+                <div class="flex items-center gap-x-2">
+                                            <div class="hidden flex-wrap gap-2 mt-2 lg:mt-0 lg:gap-x-4 lg:flex lg:flex-nowrap">
+                                                            <a href="https://laravel.io/forum/tags/authentication">
+                                    <span class="text-sm text-gray-900 bg-gray-100 border border-gray-200 rounded py-1.5 px-3 leading-none">
+    Authentication
+</span>
+                                </a>
+                                                            <a href="https://laravel.io/forum/tags/testing">
+                                    <span class="text-sm text-gray-900 bg-gray-100 border border-gray-200 rounded py-1.5 px-3 leading-none">
+    Testing
+</span>
+                                </a>
+                                                            <a href="https://laravel.io/forum/tags/laravel">
+                                    <span class="text-sm text-gray-900 bg-gray-100 border border-gray-200 rounded py-1.5 px-3 leading-none">
+    Laravel
+</span>
+                                </a>
+                                                    </div>
+                    
+                                    </div>
+            </div>
+
+                            <div class="flex flex-wrap gap-2 my-2 lg:hidden">
+                                            <span class="text-sm text-gray-900 bg-gray-100 border border-gray-200 rounded py-1.5 px-3 leading-none">
+    Authentication
+</span>
+                                            <span class="text-sm text-gray-900 bg-gray-100 border border-gray-200 rounded py-1.5 px-3 leading-none">
+    Testing
+</span>
+                                            <span class="text-sm text-gray-900 bg-gray-100 border border-gray-200 rounded py-1.5 px-3 leading-none">
+    Laravel
+</span>
+                                    </div>
+                    </div>
+    </div>
+
+    <div class="prose prose-lio max-w-none p-6 break-words" x-data="{}" x-init="$nextTick(function () { highlightCode($el); })" x-html="&quot;&lt;p&gt;I am testing my application (5.8) with the integrated PHPUnit configuration and I have problems with the authentication of a user inside a test.&lt;\/p&gt;\n&lt;p&gt;I have this test (shortened)&lt;\/p&gt;\n&lt;pre&gt;&lt;code&gt;public function testShowEditForm($user, $expectedStatus, $expectedLocation, $expectedSee, $expectedDontSee) {\n    if ($user !== null)\n        $this-&amp;gt;actingAs($user);\n\n    \/\/ $this-&amp;gt;assertAuthenticatedAs($user); -&amp;gt; This is true!\n\n    $response = $this-&amp;gt;get(&amp;quot;\/objects\/edit\/&amp;quot;);\n\n    $response-&amp;gt;assertStatus($expectedStatus);\n\n    \/\/ [...]\n}\n&lt;\/code&gt;&lt;\/pre&gt;\n&lt;p&gt;with this data provider:&lt;\/p&gt;\n&lt;pre&gt;&lt;code&gt;public function showEditFormProvider() {\n    return [\n        'allowedUser' =&amp;gt; [\n            UserGenerator::getControllingUser(),\n            200,\n            null,\n            [&amp;quot;something&amp;quot;],\n            []\n        ]\n    ];\n}\n&lt;\/code&gt;&lt;\/pre&gt;\n&lt;p&gt;The &lt;code&gt;UserGenerator::getControllingUser()&lt;\/code&gt; just triggers the User Factory, adds some rights and returns the user object.&lt;\/p&gt;\n&lt;p&gt;The tested method (also shortened):&lt;\/p&gt;\n&lt;pre&gt;&lt;code&gt;public function edit($object_id = null) {\n    $user = User::find(Auth::user()-&amp;gt;id); \/\/ Auth::user() returns null\n    \/\/ [...]\n}\n&lt;\/code&gt;&lt;\/pre&gt;\n&lt;p&gt;The route for this method is encapsuled inside the &lt;code&gt;&amp;quot;middleware&amp;quot; =&amp;gt; &amp;quot;auth&amp;quot;&lt;\/code&gt; group in the routes\/web.php.&lt;\/p&gt;\n&lt;p&gt;Problem: The data provider is correctly called, it passes the middleware but the &lt;code&gt;Auth::user()&lt;\/code&gt; call in the edit() method &lt;em&gt;returns null&lt;\/em&gt; - so the authentication seems to have failed anyway regardless the passing through the middleware?&lt;\/p&gt;\n&lt;ul&gt;\n&lt;li&gt;If I replace the parameter $user in the &lt;code&gt;testShowEditForm&lt;\/code&gt; directly with &lt;code&gt;UserGenerator::getControllingUser()&lt;\/code&gt;, it works (but this isn't a good workaround because I have a lot of test cases and so I need the data providers).&lt;\/li&gt;\n&lt;li&gt;So I worked around by calling the data provider by &lt;code&gt;$this-&amp;gt;showEditFormProvider()&lt;\/code&gt; in the first line of the test method &lt;code&gt;testShowEditForm()&lt;\/code&gt; - but it gets called twice (what is the correct behaviour according to this *). But this is also not the ideal workaround, because if I create an object in the provider to test, it gets created also twice and so the assertions fail.\nIs there anything I'm doing wrong? I already searched a lot for this topic and the &lt;code&gt;actingAs()\/be()&lt;\/code&gt; methods in the testing method seem to be the best practice for mocking a logged in user.&lt;\/li&gt;\n&lt;\/ul&gt;\n&lt;p&gt;I already set up a complete fresh installation of Laravel 6 with only the auth routes and nothing else - same problem. Also testing with a MySQL database instead of SQLite made no difference.&lt;\/p&gt;\n&lt;ul&gt;\n&lt;li&gt;&amp;quot;All data providers are executed before both the call to the setUpBeforeClass static method and the first call to the setUp method.&amp;quot; &lt;a href=\&quot;https:\/\/phpunit.readthedocs.io\/en\/8.4\/writing-tests-for-phpunit.html#data-provider\&quot; rel=\&quot;nofollow\&quot; target=\&quot;_blank\&quot;&gt;https:\/\/phpunit.readthedocs.io\/en\/8.4\/writing-tests-for-phpuni...&lt;\/a&gt;&lt;\/li&gt;\n&lt;\/ul&gt;\n&quot;"><p>I
+ am testing my application (5.8) with the integrated PHPUnit 
+configuration and I have problems with the authentication of a user 
+inside a test.</p>
+<p>I have this test (shortened)</p>
+<pre><code class="hljs elixir">public function testShowEditForm(<span class="hljs-variable">$user</span>, <span class="hljs-variable">$expectedStatus</span>, <span class="hljs-variable">$expectedLocation</span>, <span class="hljs-variable">$expectedSee</span>, <span class="hljs-variable">$expectedDontSee</span>) {
+    if (<span class="hljs-variable">$user</span> !== null)
+        <span class="hljs-variable">$this</span>-&gt;actingAs(<span class="hljs-variable">$user</span>);
+
+    <span class="hljs-regexp">//</span> <span class="hljs-variable">$this</span>-&gt;assertAuthenticatedAs(<span class="hljs-variable">$user</span>); -&gt; This is <span class="hljs-keyword">true</span>!
+
+    <span class="hljs-variable">$response</span> = <span class="hljs-variable">$this</span>-&gt;get(<span class="hljs-string">"/objects/edit/"</span>);
+
+    <span class="hljs-variable">$response</span>-&gt;assertStatus(<span class="hljs-variable">$expectedStatus</span>);
+
+    <span class="hljs-regexp">//</span> [...]
+}
+</code></pre>
+<p>with this data provider:</p>
+<pre><code class="hljs zephir"><span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">showEditFormProvider</span><span class="hljs-params">()</span> </span>{
+    <span class="hljs-keyword">return</span> [
+        <span class="hljs-string">'allowedUser'</span> =&gt; [
+            UserGenerator::getControllingUser(),
+            <span class="hljs-number">200</span>,
+            <span class="hljs-keyword">null</span>,
+            [<span class="hljs-string">"something"</span>],
+            []
+        ]
+    ];
+}
+</code></pre>
+<p>The <code>UserGenerator::getControllingUser()</code> just triggers the User Factory, adds some rights and returns the user object.</p>
+<p>The tested method (also shortened):</p>
+<pre><code class="hljs php"><span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">edit</span>(<span class="hljs-params"><span class="hljs-variable">$object_id</span> = <span class="hljs-literal">null</span></span>) </span>{
+    <span class="hljs-variable">$user</span> = User::find(Auth::user()-&gt;id); <span class="hljs-comment">// Auth::user() returns null</span>
+    <span class="hljs-comment">// [...]</span>
+}
+</code></pre>
+<p>The route for this method is encapsuled inside the <code>"middleware" =&gt; "auth"</code> group in the routes/web.php.</p>
+<p>Problem: The data provider is correctly called, it passes the middleware but the <code>Auth::user()</code> call in the edit() method <em>returns null</em> - so the authentication seems to have failed anyway regardless the passing through the middleware?</p>
+<ul>
+<li>If I replace the parameter $user in the <code>testShowEditForm</code> directly with <code>UserGenerator::getControllingUser()</code>, it works (but this isn't a good workaround because I have a lot of test cases and so I need the data providers).</li>
+<li>So I worked around by calling the data provider by <code>$this-&gt;showEditFormProvider()</code> in the first line of the test method <code>testShowEditForm()</code>
+ - but it gets called twice (what is the correct behaviour according to 
+this *). But this is also not the ideal workaround, because if I create 
+an object in the provider to test, it gets created also twice and so the
+ assertions fail.
+Is there anything I'm doing wrong? I already searched a lot for this 
+topic and the <code>actingAs()/be()</code> methods in the testing method seem to be the best practice for mocking a logged in user.</li>
+</ul>
+<p>I already set up a complete fresh installation of Laravel 6 with only
+ the auth routes and nothing else - same problem. Also testing with a 
+MySQL database instead of SQLite made no difference.</p>
+<ul>
+<li>"All data providers are executed before both the call to the 
+setUpBeforeClass static method and the first call to the setUp method." <a href="https://phpunit.readthedocs.io/en/8.4/writing-tests-for-phpunit.html#data-provider" rel="nofollow" target="_blank">https://phpunit.readthedocs.io/en/8.4/writing-tests-for-phpuni...</a></li>
+</ul>
+</div>
+
+            <div class="text-sm text-gray-900 p-6">
+            Last updated
+
+            
+            4 months ago.
+        </div>
+    
+    <div class="px-6 pb-6">
+        <div wire:id="A9rovo3rMgNMgHOphPOZ">
+            <div class="flex items-center gap-x-2">
+            <svg class="w-6 h-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true">
+  <path stroke-linecap="round" stroke-linejoin="round" d="M14 10h4.764a2 2 0 011.789 2.894l-3.5 7A2 2 0 0115.263 21h-4.017c-.163 0-.326-.02-.485-.06L7 20m7-10V5a2 2 0 00-2-2h-.095c-.5 0-.905.405-.905.905 0 .714-.211 1.412-.608 2.006L7 11v9m7-10h-2M7 20H5a2 2 0 01-2-2v-6a2 2 0 012-2h2.5"></path>
+</svg>            
+            <span class="font-medium">
+                0
+            </span>
+        </div>
+    </div>
+
+<!-- Livewire Component wire-end:A9rovo3rMgNMgHOphPOZ -->    </div>
+</div>
+
+                                            <div class="bg-white shadow rounded " id="37072" x-data="{ edit: false }">
+    <div class="border-b">
+        <div class="flex flex-row justify-between items-center px-6 py-2.5">
+            <div>
+                <div class="flex flex-col lg:flex-row lg:items-center">
+                    <div class="flex items-center">
+                        <a href="https://laravel.io/user/benoit1980">
+
+    <img src="Auth%20user()%20returns%20null%20in%20test%20with%20data%20provider%20Laravel.io_soubory/FreddyCrugger.svg" alt="bennyboy" class="bg-gray-50 rounded-full w-6 h-6 rounded-full mr-3">
+
+    </a>
+
+                        <a href="https://laravel.io/user/benoit1980" class="hover:underline">
+                            <span class="text-gray-900 mr-5">benoit1980</span>
+                        </a>
+                    </div>
+
+                    <a href="#37072" class="font-mono text-gray-700 hover:text-lio-500 hover:underline mt-1 lg:mt-0">
+                        2 years ago
+                    </a>
+                </div>
+            </div>
+
+            <div class="flex items-center lg:gap-x-3">
+    
+                
+    </div>
+        </div>
+    </div>
+
+    <div wire:id="rcSHJgFBmUX3nVh0h8hD">
+    <div x-show="!edit" x-data="" x-init="$nextTick(function () { highlightCode($el); }); $watch('edit', function () { highlightCode($el); }); $wire.on('replyEdited', function () { show = true; edit = false; });" class="prose prose-lio max-w-none p-6 break-words">
+        <p>Try this:</p>
+<p><code>$user = User::find(Auth::id());</code></p>
+<p>Hope this helps,</p>
+<p>Ben</p>
+
+    </div>
+
+    
+            <div class="text-sm text-gray-900 px-6 pb-6" x-show="!edit">
+            Last updated
+
+            
+            2 years ago.
+        </div>
+    </div>
+
+<!-- Livewire Component wire-end:rcSHJgFBmUX3nVh0h8hD -->
+    <div class="flex justify-between" x-show="!edit">
+        <div class="px-6 pb-6">
+            <div wire:id="1JBcdlyPdencrcnWAOTX">
+            <div class="flex items-center gap-x-2">
+            <svg class="w-6 h-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true">
+  <path stroke-linecap="round" stroke-linejoin="round" d="M14 10h4.764a2 2 0 011.789 2.894l-3.5 7A2 2 0 0115.263 21h-4.017c-.163 0-.326-.02-.485-.06L7 20m7-10V5a2 2 0 00-2-2h-.095c-.5 0-.905.405-.905.905 0 .714-.211 1.412-.608 2.006L7 11v9m7-10h-2M7 20H5a2 2 0 01-2-2v-6a2 2 0 012-2h2.5"></path>
+</svg>            
+            <span class="font-medium">
+                0
+            </span>
+        </div>
+    </div>
+
+<!-- Livewire Component wire-end:1JBcdlyPdencrcnWAOTX -->        </div>
+
+            </div>
+</div>
+                                            <div class="bg-white shadow rounded " id="37092" x-data="{ edit: false }">
+    <div class="border-b">
+        <div class="flex flex-row justify-between items-center px-6 py-2.5">
+            <div>
+                <div class="flex flex-col lg:flex-row lg:items-center">
+                    <div class="flex items-center">
+                        <a href="https://laravel.io/user/mechelon">
+
+    <img src="Auth%20user()%20returns%20null%20in%20test%20with%20data%20provider%20Laravel.io_soubory/mechelon.jpg" alt="M Echelon" class="bg-gray-50 rounded-full w-6 h-6 rounded-full mr-3">
+
+    </a>
+
+                        <a href="https://laravel.io/user/mechelon" class="hover:underline">
+                            <span class="text-gray-900 mr-5">mechelon</span>
+                        </a>
+                    </div>
+
+                    <a href="#37092" class="font-mono text-gray-700 hover:text-lio-500 hover:underline mt-1 lg:mt-0">
+                        2 years ago
+                    </a>
+                </div>
+            </div>
+
+            <div class="flex items-center lg:gap-x-3">
+    
+                
+    </div>
+        </div>
+    </div>
+
+    <div wire:id="nc8MM00A2bzWyqFVNynx">
+    <div x-show="!edit" x-data="" x-init="$nextTick(function () { highlightCode($el); }); $watch('edit', function () { highlightCode($el); }); $wire.on('replyEdited', function () { show = true; edit = false; });" class="prose prose-lio max-w-none p-6 break-words">
+        <p>Thank you!
+I have no idea why, but this works.
+Does anyone know about the "internal" difference between my version
+<code>$user = User::find(Auth::user()-&gt;id);</code>
+and Bens suggestion
+<code>$user = User::find(Auth::id());</code>
+?</p>
+
+    </div>
+
+    
+    </div>
+
+<!-- Livewire Component wire-end:nc8MM00A2bzWyqFVNynx -->
+    <div class="flex justify-between" x-show="!edit">
+        <div class="px-6 pb-6">
+            <div wire:id="E9CgshGbtGHEYbJAJmsb">
+            <div class="flex items-center gap-x-2">
+            <svg class="w-6 h-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true">
+  <path stroke-linecap="round" stroke-linejoin="round" d="M14 10h4.764a2 2 0 011.789 2.894l-3.5 7A2 2 0 0115.263 21h-4.017c-.163 0-.326-.02-.485-.06L7 20m7-10V5a2 2 0 00-2-2h-.095c-.5 0-.905.405-.905.905 0 .714-.211 1.412-.608 2.006L7 11v9m7-10h-2M7 20H5a2 2 0 01-2-2v-6a2 2 0 012-2h2.5"></path>
+</svg>            
+            <span class="font-medium">
+                0
+            </span>
+        </div>
+    </div>
+
+<!-- Livewire Component wire-end:E9CgshGbtGHEYbJAJmsb -->        </div>
+
+            </div>
+</div>
+                                    </div>
+
+                <div class="absolute h-full border-l border-lio-500 ml-8 z-10 inset-y-0 left-0 lg:ml-16"></div>
+            </div>
+
+            
+                                                <p class="text-center py-8">
+                        <a href="https://laravel.io/login" class="text-lio-500 border-b-2 pb-0.5 border-lio-100 hover:text-lio-600">Sign in</a> to participate in this thread!
+                    </p>
+                                    </div>
+
+        <div class="w-full lg:w-1/4">
+            <a href="https://fullstackeurope.com/2022?utm_source=Laravel.io&amp;utm_campaign=fseu22&amp;utm_medium=advertisement" target="_blank" rel="noopener noreferrer" onclick="fathom.trackGoal('SRIK2PEE', 0);">
+    <img class="my-4 mx-auto w-full" style="max-width:300px" src="Auth%20user()%20returns%20null%20in%20test%20with%20data%20provider%20Laravel.io_soubory/fseu-small.png" alt="Full Stack Europe">
+</a>
+
+<p class="text-center px-4 mt-4 md:mt-6">
+    <a href="https://github.com/sponsors/laravelio" target="_blank" rel="noopener" class="text-base border-b pb-1 text-gray-700 border-gray-300 hover:text-gray-500">
+        Your banner here too?
+    </a>
+</p>
+            <div class="mt-6">
+                <div class="flex flex-col rounded-md shadow mt-6">
+    <div class="bg-gray-900 rounded-t-md h-28" style="background-image: url('https://laravel.io/images/profile-background.svg')"></div>
+
+    <div class="flex flex-col items-center justify-center bg-white rounded-b-md pb-8">
+        <a href="https://laravel.io/user/mechelon">
+
+    <img src="Auth%20user()%20returns%20null%20in%20test%20with%20data%20provider%20Laravel.io_soubory/mechelon.jpg" alt="M Echelon" class="bg-gray-50 rounded-full w-32 h-32 rounded-full -mt-16 mb-6">
+
+    </a>
+
+        <a href="https://laravel.io/user/mechelon" class="flex flex-col text-center text-xl font-medium mb-4 hover:underline">
+            M Echelon
+            <span class="text-lg text-gray-600">mechelon</span>
+        </a>
+
+        <span class="text-gray-600 mb-4">
+            Joined 25 Oct 2019
+        </span>
+
+        <div class="flex items-center gap-x-3">
+                            <a href="https://github.com/mechelon">
+                    <svg class="w-6 h-6" viewBox="0 0 24 24" fill="currentColor">
+    <path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"></path>
+</svg>                </a>
+            
+                    </div>
+    </div>
+
+</div>
+            </div>
+
+            
+            <div class="my-6">
+                <div class="bg-white shadow rounded-md p-5 pb-3">
+    <h3 class="text-xl font-semibold">Moderators</h3>
+
+    <ul>
+                    <li class="border-b flex items-center gap-x-5 pb-3 pt-5">
+                <a href="https://laravel.io/user/driesvints">
+
+    <img src="Auth%20user()%20returns%20null%20in%20test%20with%20data%20provider%20Laravel.io_soubory/driesvints.jpg" alt="Dries Vints" class="bg-gray-50 rounded-full w-10 h-10">
+
+    </a>
+
+                <span class="flex flex-col">
+                    <a href="https://laravel.io/user/driesvints" class="hover:underline">
+                        <span class="text-gray-900 font-medium">
+                            driesvints
+                        </span>
+                    </a>
+
+                    <span class="text-gray-700">
+                        Joined 16 Dec 2013
+                    </span>
+                </span>
+            </li>
+                    <li class="border-b flex items-center gap-x-5 pb-3 pt-5">
+                <a href="https://laravel.io/user/joedixon">
+
+    <img src="Auth%20user()%20returns%20null%20in%20test%20with%20data%20provider%20Laravel.io_soubory/joedixon.jpg" alt="Joe Dixon" class="bg-gray-50 rounded-full w-10 h-10">
+
+    </a>
+
+                <span class="flex flex-col">
+                    <a href="https://laravel.io/user/joedixon" class="hover:underline">
+                        <span class="text-gray-900 font-medium">
+                            joedixon
+                        </span>
+                    </a>
+
+                    <span class="text-gray-700">
+                        Joined 23 Jun 2014
+                    </span>
+                </span>
+            </li>
+                    <li class="border-b flex items-center gap-x-5 pb-3 pt-5">
+                <a href="https://laravel.io/user/tvbeek">
+
+    <img src="Auth%20user()%20returns%20null%20in%20test%20with%20data%20provider%20Laravel.io_soubory/tvbeek.jpg" alt="Tobias van Beek" class="bg-gray-50 rounded-full w-10 h-10">
+
+    </a>
+
+                <span class="flex flex-col">
+                    <a href="https://laravel.io/user/tvbeek" class="hover:underline">
+                        <span class="text-gray-900 font-medium">
+                            tvbeek
+                        </span>
+                    </a>
+
+                    <span class="text-gray-700">
+                        Joined 8 Jan 2018
+                    </span>
+                </span>
+            </li>
+                    <li class="flex items-center gap-x-5 pb-3 pt-5">
+                <a href="https://laravel.io/user/tomhatzer">
+
+    <img src="Auth%20user()%20returns%20null%20in%20test%20with%20data%20provider%20Laravel.io_soubory/tomhatzer.jpg" alt="Tom Hatzer" class="bg-gray-50 rounded-full w-10 h-10">
+
+    </a>
+
+                <span class="flex flex-col">
+                    <a href="https://laravel.io/user/tomhatzer" class="hover:underline">
+                        <span class="text-gray-900 font-medium">
+                            tomhatzer
+                        </span>
+                    </a>
+
+                    <span class="text-gray-700">
+                        Joined 28 Oct 2021
+                    </span>
+                </span>
+            </li>
+            </ul>
+</div>
+            </div>
+        </div>
+    </section>
+    </div>
+
+<section class="mt-12 lg:mt-40">
+    <div class="container mx-auto flex justify-center mt-14">
+    <div class="w-full mx-4 text-center">
+        <p class="text-base mb-6 md:text-lg md:mb-12">
+            We'd like to thank these <span class="text-lio-500 font-bold relative inline-block stroke-current">
+    amazing companies
+    <svg class="absolute bottom-0 w-full max-h-1.5" viewBox="0 0 55 5" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+    <path d="M0.652466 4.00002C15.8925 2.66668 48.0351 0.400018 54.6853 2.00002" stroke-width="2"></path>
+</svg></span> for supporting us
+        </p>
+
+        <div class="mt-6 grid grid-cols-2 gap-y-8 lg:grid-cols-4">
+            <div class="col-span-3 flex justify-center lg:col-span-1">
+                <a class="flex items-center" href="https://beyondco.de/">
+    <img class="max-h-7 max-w-14" src="Auth%20user()%20returns%20null%20in%20test%20with%20data%20provider%20Laravel.io_soubory/beyondcode.png" alt="Beyond Code">
+</a>
+            </div>
+
+            <div class="col-span-2 flex justify-center lg:col-span-1">
+                <a class="flex items-center" href="https://usefathom.com/ref/7A8QGC">
+    <img class="max-h-7 max-w-14" src="Auth%20user()%20returns%20null%20in%20test%20with%20data%20provider%20Laravel.io_soubory/fathom.png" alt="Fathom">
+</a>
+            </div>
+
+            <div class="col-span-2 flex justify-center lg:col-span-1">
+                <a class="flex items-center" href="https://forge.laravel.com/">
+    <img class="max-h-7 max-w-14" src="Auth%20user()%20returns%20null%20in%20test%20with%20data%20provider%20Laravel.io_soubory/forge.png" alt="Forge">
+</a>
+            </div>
+
+            <div class="col-span-2 flex justify-center lg:col-span-1">
+                <a class="flex items-center" href="https://envoyer.io/">
+    <img class="max-h-7 max-w-14" src="Auth%20user()%20returns%20null%20in%20test%20with%20data%20provider%20Laravel.io_soubory/envoyer.png" alt="Envoyer">
+</a>
+            </div>
+
+            <div class="col-span-2 flex justify-center lg:col-span-1">
+                <a class="flex items-center" href="https://akaunting.com/developers?utm_source=Laravelio&amp;utm_medium=Banner&amp;utm_campaign=Developers">
+    <img class="max-h-7 max-w-14" src="Auth%20user()%20returns%20null%20in%20test%20with%20data%20provider%20Laravel.io_soubory/akaunting.png" alt="Akaunting">
+</a>
+            </div>
+
+            <div class="col-span-2 flex justify-center lg:col-span-1">
+                <a class="flex items-center" href="https://larajobs.com/">
+    <img class="max-h-7 max-w-14" src="Auth%20user()%20returns%20null%20in%20test%20with%20data%20provider%20Laravel.io_soubory/larajobs.svg" alt="LaraJobs">
+</a>
+            </div>
+
+            <div class="col-span-2 flex justify-center lg:col-span-1">
+                <a class="flex items-center" href="https://ter.li/vj4bxb">
+    <img class="max-h-7 max-w-14" src="Auth%20user()%20returns%20null%20in%20test%20with%20data%20provider%20Laravel.io_soubory/scout-apm.jpg" alt="Scout APM">
+</a>
+            </div>
+
+            <div class="col-span-2 flex justify-center lg:col-span-1">
+                <a class="flex items-center" href="https://www.cloudways.com/en/?id=972670">
+    <img class="max-h-7 max-w-14" src="Auth%20user()%20returns%20null%20in%20test%20with%20data%20provider%20Laravel.io_soubory/cloudways.png" alt="Cloudways">
+</a>
+            </div>
+        </div>
+
+        <p class="text-center px-4 mt-8 md:mt-12">
+    <a href="https://github.com/sponsors/laravelio" target="_blank" rel="noopener" class="text-base border-b pb-1 text-lio-500 border-lio-100 hover:text-lio-600">
+        Your logo here?
+    </a>
+</p>    </div>
+</div>
+</section>
+
+<div class="bg-gray-900 text-white mt-14 lg:mt-40">
+    <div class="container mx-auto pt-7 pb-8 lg:pt-20 lg:px-16">
+        <div class="mx-4 md:mx-0">
+            <div class="flex flex-col pb-8 mb-8 border-b lg:pb-16 border-gray-800 lg:flex-row">
+                <div class="w-full mb-6 lg:w-2/5 lg:pr-20 lg:mb-0">
+                    <a href="" class="block mb-5">
+                        <img src="Auth%20user()%20returns%20null%20in%20test%20with%20data%20provider%20Laravel.io_soubory/laravelio-logo-white.svg">
+                    </a>
+
+                    <p class="text-gray-100 lg:leading-loose">
+                        The Laravel portal for problem solving, knowledge sharing and community building.
+                    </p>
+                </div>
+
+                <div class="lg:w-full lg:flex lg:justify-between">
+                    <div class="grow mb-6 lg:mb-0">
+                        <h6 class="text-lg mb-4 lg:mb-6">
+                            Laravel.io
+                        </h6>
+
+                        <div class="flex flex-wrap lg:flex-col lg:flex-no-wrap">
+                            <a href="https://laravel.io/forum" class="w-1/2 text-gray-400 mb-4 hover:text-gray-200 lg:mb-6">
+                                Forum
+                            </a>
+
+                            <a href="https://laravel.io/articles" class="w-1/2 text-gray-400 mb-4 hover:text-gray-200 lg:mb-6">
+                                Articles
+                            </a>
+
+                            <a href="https://paste.laravel.io/" class="w-1/2 text-gray-400 mb-4 hover:text-gray-200 lg:mb-6">
+                                Pastebin
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="grow mb-6 lg:mb-0">
+                        <h6 class="text-lg mb-4 lg:mb-6">
+                            Socials
+                        </h6>
+
+                        <div class="flex flex-wrap lg:flex-col lg:flex-no-wrap">
+                            <a href="https://twitter.com/laravelio" class="w-1/2 text-gray-400 mb-4 hover:text-gray-200 lg:mb-6">
+                                <svg class="text-white w-4 h-4 inline mr-3.5" viewBox="0 0 24 24" fill="currentColor">
+    <path d="M23.954 4.569c-.885.389-1.83.654-2.825.775 1.014-.611 1.794-1.574 2.163-2.723-.951.555-2.005.959-3.127 1.184-.896-.959-2.173-1.559-3.591-1.559-2.717 0-4.92 2.203-4.92 4.917 0 .39.045.765.127 1.124C7.691 8.094 4.066 6.13 1.64 3.161c-.427.722-.666 1.561-.666 2.475 0 1.71.87 3.213 2.188 4.096-.807-.026-1.566-.248-2.228-.616v.061c0 2.385 1.693 4.374 3.946 4.827-.413.111-.849.171-1.296.171-.314 0-.615-.03-.916-.086.631 1.953 2.445 3.377 4.604 3.417-1.68 1.319-3.809 2.105-6.102 2.105-.39 0-.779-.023-1.17-.067 2.189 1.394 4.768 2.209 7.557 2.209 9.054 0 13.999-7.496 13.999-13.986 0-.209 0-.42-.015-.63.961-.689 1.8-1.56 2.46-2.548l-.047-.02z"></path>
+</svg>                                Twitter
+                            </a>
+
+                            <a href="https://github.com/laravelio" class="w-1/2 text-gray-400 mb-4 hover:text-gray-200 lg:mb-6">
+                                <svg class="text-white w-4 h-4 inline mr-3.5" viewBox="0 0 24 24" fill="currentColor">
+    <path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"></path>
+</svg>                                GitHub
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="grow">
+                        <h6 class="text-lg mb-6">
+                            The community
+                        </h6>
+
+                        <div class="flex flex-col flex-nowrap">
+                            <div class="flex mb-4 lg:mb-6">
+                                <a href="https://laravel.com/" class="w-1/2 text-gray-400 hover:text-gray-200">
+                                    <img src="Auth%20user()%20returns%20null%20in%20test%20with%20data%20provider%20Laravel.io_soubory/laravel.png" alt="Laravel" class="w-4 h-4 inline mr-2">
+                                    Laravel
+                                </a>
+
+                                <a href="https://laravel-news.com/" class="w-1/2 text-gray-400 hover:text-gray-200">
+                                    <img src="Auth%20user()%20returns%20null%20in%20test%20with%20data%20provider%20Laravel.io_soubory/laravel-news.png" alt="Laravel News" class="w-4 h-4 inline mr-2">
+                                    Laravel News
+                                </a>
+                            </div>
+
+                            <div class="flex">
+                                <a href="https://laracasts.com/" class="w-1/2 text-gray-400 hover:text-gray-200">
+                                    <img src="Auth%20user()%20returns%20null%20in%20test%20with%20data%20provider%20Laravel.io_soubory/laracasts.png" alt="Laracasts" class="w-4 h-4 inline mr-2">
+                                    Laracasts
+                                </a>
+
+                                <a href="https://www.laravelpodcast.com/" class="w-1/2 text-gray-400 hover:text-gray-200">
+                                    <img src="Auth%20user()%20returns%20null%20in%20test%20with%20data%20provider%20Laravel.io_soubory/podcast.png" alt="Laravel Podcast" class="w-4 h-4 inline mr-2">
+                                    Laravel Podcast
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="text-gray-100 flex flex-col lg:flex-row">
+                <span class="mb-5 lg:mb-0 lg:mr-5">
+                    © 2022 Laravel.io - All rights reserved.
+                </span>
+
+                <div class="flex flex-wrap lg:block">
+                    <a href="https://laravel.io/terms" class="w-1/2 mb-4 hover:text-gray-200 lg:w-full lg:mb-0 lg:mr-8">
+                        Terms of service
+                    </a>
+                    <a href="https://laravel.io/privacy" class="w-1/2 mb-4 hover:text-gray-200 lg:w-full lg:mb-0 lg:mr-8">
+                        Privacy policy
+                    </a>
+                    <a href="https://github.com/sponsors/laravelio" class="w-1/2 hover:text-gray-200 lg:w-full lg:mb-0">
+                        Advertise
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script src="Auth%20user()%20returns%20null%20in%20test%20with%20data%20provider%20Laravel.io_soubory/livewire.js" data-turbo-eval="false" data-turbolinks-eval="false"></script><script data-turbo-eval="false" data-turbolinks-eval="false">window.livewire = new Livewire();window.Livewire = window.livewire;window.livewire_app_url = '';window.livewire_token = 'Tptnu6GClOLb3E5YwPmLctS7Nem7NRsBSMsMWC8b';window.deferLoadingAlpine = function (callback) {window.addEventListener('livewire:load', function () {callback();});};let started = false;window.addEventListener('alpine:initializing', function () {if (! started) {window.livewire.start();started = true;}});document.addEventListener("DOMContentLoaded", function () {if (! started) {window.livewire.start();started = true;}});</script>
+
+
+
+</body></html>
